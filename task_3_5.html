@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*5. *Нарисовать пирамиду с помощью console.log, как показано на рисунке, 
+        только у вашей пирамиды должно быть 20 рядов, а не 5:
+        x
+        xx
+        xxx
+        xxxx
+        xxxxx
+        */
+
+        function drawPyramid (symbol, numRow) {
+            for (let i = 1; i <= numRow; i++) { 
+                for (let j = 0; j < i; j++) {
+                    console.log(symbol);
+                }
+                console.log('\n');
+            }
+        }
+        
+        let userSymbol = 'x';
+        let numRow = 20;
+        drawPyramid(userSymbol, numRow);
+    </script>
+</body>
+</html>
