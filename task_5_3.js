@@ -3,52 +3,44 @@
 3.1. Пустая корзина должна выводить строку «Корзина пуста»;
 3.2. Наполненная должна выводить «В корзине: n товаров на сумму m рублей».*/
 
-const basket = {
+const productList = [['яблоки', 80, 2], ['груши', 120, 3], ['молоко', 68, 4]];
+
+const userBasket = {
+    basketBlock: null,
     basketList: [],
-    addProduct (basketList, productObj) {
-        basketList.push(productObj);
-        return basketList;
+    productList,
+    sumPriceBasket: 0,
+    stringToBlock: null,
+    init() {
+        this.basketBlock = document.querySelector('.basket');
+        this.fillBasket();
+        this.getBasketPrice();
+        this.createStringToBlock();
+        this.basketBlock.innerHTML = this.stringToBlock;
     },
-    getBasketPrice(basketList) {
-        let countProducts = basketList.length;
-        let sumPriceBasket = 0;
-        for (let item = 0; item < countProducts; item++) {
-            sumPriceBasket += basketList[item].price * basketList[item].count;
+    fillBasket() {
+        for (let product = 0; product < productList.length; product++) {
+            let productObj = {};
+            productObj['nameProduct'] = this.productList[product][0];
+            productObj['price'] = this.productList[product][1];
+            productObj['count'] = this.productList[product][2];
+            this.basketList.push(productObj);
         }
-        return sumPriceBasket;
-    }
+    },
+    getBasketPrice() {
+        let sumPrice = 0;
+        for (let item = 0; item < this.basketList.length; item++) {
+            this.sumPriceBasket += this.basketList[item].price * this.basketList[item].count;
+        }
+    },
+    createStringToBlock() {
+        if (this.basketList.length == 0) {
+            this.stringToBlock = "basket is empty";
+        } else {
+            this.stringToBlock = `There are ${this.basketList.length} items in the basket for the amount of ${this.sumPriceBasket}`
+        }
+    },
 }
 
-
-
-function getProductObj (nameProduct, price, count) {
-    let productObj = {};
-    productObj['nameProduct'] = nameProduct;
-    productObj['price'] = price;
-    productObj['count'] = count;
-    return productObj;
-}
-
-
-function checkBasket(basket) {
-    let countProducts = basket.basketList.length;
-    let answerString = '';
-    if (countProducts == 0) {
-        answerString = 'basket is empty';
-        return answerString;
-    } else {
-        let priceBasket = basket.getBasketPrice(basket.basketList);
-        answerString = `There are ${countProducts} items in the basket for the amount of ${priceBasket}`;
-        return answerString;
-    }
-}
-
-
-let product1 = getProductObj('apples', 100, 6);
-let product2 = getProductObj('milk', 69, 4);
-basket.addProduct(basket.basketList, product1);
-basket.addProduct(basket.basketList, product2);
-let basketInfo = checkBasket(basket);
-const basketBlock = document.querySelector('.basket');
-basketBlock.textContent = basketInfo;
+userBasket.init();
 
