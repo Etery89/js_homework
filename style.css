@@ -1,0 +1,9 @@
+.basket {
+    background-color:cadetblue;
+    height: 100px;
+    margin-bottom: 6px;
+    border: 1px solid black
+}
+.p {
+    color: darkblue;
+}

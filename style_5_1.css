@@ -1,0 +1,13 @@
+table {
+	border-collapse: collapse;
+}
+tr {
+	width: 20px;
+	height: 20px;
+}
+td {
+	border: 1px solid rgb(219, 219, 203);
+	width: 20px;
+	height: 20px;
+	background-color: #eee;
+}
